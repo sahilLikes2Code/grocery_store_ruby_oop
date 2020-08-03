@@ -24,16 +24,18 @@ end
 cart = Cart.new
 
 list_of_items.each { |item|
-  grocery_item = nil
+  item = nil
   case item
   when "apple"
-    grocery_item = GroceryItem.new("Apple", 0.89)
+    item = Item.new("Apple", 0.89)
   when "banana"
-    grocery_item = GroceryItem.new("Banana", 0.99)
+    item = Item.new("Banana", 0.99)
   when "milk"
-    grocery_item = GroceryItem.new("Milk", 3.97, 2, 5)
+    item = Item.new("Milk", 3.97, 2, 5)
   when "bread"
-    grocery_item = GroceryItem.new("Bread", 2.17, 3, 6)
+    item = Item.new("Bread", 2.17, 3, 6)
   end
-  cart.add_item(grocery_item)
+  cart.add_item(item)
 }
+
+puts list_of_items
