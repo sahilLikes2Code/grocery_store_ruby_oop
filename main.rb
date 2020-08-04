@@ -1,6 +1,6 @@
 require_relative "cart"
 require_relative "valid_items"
-require_relative "grocery_item"
+require_relative "item"
 
 puts "Please enter all the items purchased separated by a comma"
 
@@ -23,9 +23,9 @@ end
 
 cart = Cart.new
 
-list_of_items.each { |item|
+list_of_items.each { |i|
   item = nil
-  case item
+  case i
   when "apple"
     item = Item.new("Apple", 0.89)
   when "banana"
@@ -38,4 +38,9 @@ list_of_items.each { |item|
   cart.add_item(item)
 }
 
-puts list_of_items
+puts cart.amount_before_after_discount
+# print cart.discounted_prices
+# puts
+# print cart.savings
+# puts
+# print (cart.bill_amount + cart.savings)
