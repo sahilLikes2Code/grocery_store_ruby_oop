@@ -11,7 +11,7 @@ class Cart
     total_amount_before_discount = @items.map { |item| item.regular_price }.inject { |sum, n| sum + n }
 
     items_group = @items.group_by { |item| item.name }
-    
+
     discounted_amount = items_group.inject(0) { |total, (name, list)|
       total += collection_bulk_price(list)
     }
@@ -32,7 +32,7 @@ class Cart
     (group_buy_packs * item.sale_price) + (remaining_qty * item.regular_price)
   end
 
-  def price_qty_breakup
+  def item_price_qty_breakup
     item_name_price_qty = []
     items_group = @items.group_by { |item| item.name }
 

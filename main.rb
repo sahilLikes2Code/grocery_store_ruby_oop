@@ -1,3 +1,4 @@
+require "terminal-table/import"
 require_relative "cart"
 require_relative "valid_items"
 require_relative "item"
@@ -38,9 +39,18 @@ list_of_items.each { |i|
   cart.add_item(item)
 }
 
-print cart.price_qty_breakup
-# print cart.discounted_prices
-# puts
-# print cart.savings
-# puts
-# print (cart.bill_amount + cart.savings)
+item_price_qty_breakup = cart.item_price_qty_breakup
+items_table = table { |t|
+  t.headings = "Item", "Quantity", "Price"
+  item_price_qty_breakup.each { |row| t << row }
+}
+
+items_table.style = { :width => 40, :border_x => "-", :border_i => "-", :border_bottom => false, :border_y => "" }
+
+puts items_table
+amount_before_discount = cart.amount_before_after_discount[0]
+amount_after_discount = cart.amount_before_after_discount[1]
+
+print "\n"
+puts "Total price : $#{amount_after_discount.round(2)}"
+puts "You saved $#{(amount_before_discount - amount_after_discount).round(2)} today."
