@@ -13,13 +13,13 @@ class Cart
     items_group = @items.group_by { |item| item.name }
 
     discounted_amount = items_group.inject(0) { |total, (name, list)|
-      total += collection_bulk_price(list)
+      total += total_price_each_item(list)
     }
 
     [total_amount_before_discount, discounted_amount]
   end
 
-  def collection_bulk_price(collection)
+  def total_price_each_item(collection)
     size = collection.size
     item = collection[0]
 
@@ -37,7 +37,7 @@ class Cart
     items_group = @items.group_by { |item| item.name }
 
     items_group.each { |name, list|
-      item_name_price_qty << [name, list.size, "$#{collection_bulk_price(list)}"]
+      item_name_price_qty.push([name, list.size, "$#{total_price_each_item(list)}"])
     }
 
     item_name_price_qty
