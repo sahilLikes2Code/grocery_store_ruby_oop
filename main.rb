@@ -38,7 +38,7 @@ list_of_items.each { |i|
   cart.add_item(item)
 }
 
-puts cart.amount_before_after_discount
+print cart.price_qty_breakup
 # print cart.discounted_prices
 # puts
 # print cart.savings
